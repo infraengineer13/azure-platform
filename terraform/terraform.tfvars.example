@@ -1,0 +1,3 @@
+project_name = "example"
+environment  = "dev"
+location     = "westeurope"
