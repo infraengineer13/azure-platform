@@ -1,3 +1,5 @@
-project_name = "platform"
-environment  = "dev"
-location     = "westeurope"
+project_name      = "platform"
+environment       = "dev"
+location          = "westeurope"
+key_vault_name    = "kv-platform-dev-plc"
+keyvault_location = "polandcentral"

@@ -13,3 +13,12 @@ module "rbac" {
   principal_id = data.terraform_remote_state.bootstrap.outputs.identity_principal_id
   scope        = azurerm_resource_group.platform.id
 }
+
+module "keyvault" {
+  source = "./modules/keyvault"
+
+  key_vault_name = var.key_vault_name
+  environment    = var.environment
+  location       = var.keyvault_location
+  project_name   = var.project_name
+}

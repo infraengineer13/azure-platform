@@ -3,6 +3,11 @@ variable "project_name" {
   type        = string
 }
 
+variable "key_vault_name" {
+  description = "Name of the key vault"
+  type        = string
+}
+
 variable "environment" {
   description = "Stage of environment"
   type        = string
@@ -10,15 +15,5 @@ variable "environment" {
 
 variable "location" {
   description = "Azure region where resources will be deployed"
-  type        = string
-}
-
-variable "key_vault_name" {
-  description = "Name of Key Vault"
-  type        = string
-}
-
-variable "keyvault_location" {
-  description = "Azure region for Key Vault"
   type        = string
 }
