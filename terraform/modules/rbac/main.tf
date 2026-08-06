@@ -1,5 +1,5 @@
-resource "azurerm_role_assignment" "terraform" {
+resource "azurerm_role_assignment" "this" {
   scope                = var.scope
-  role_definition_name = "Contributor"
+  role_definition_name = var.role_definition_name
   principal_id         = var.principal_id
 }

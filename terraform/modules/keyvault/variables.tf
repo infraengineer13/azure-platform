@@ -17,3 +17,9 @@ variable "location" {
   description = "Azure region where resources will be deployed"
   type        = string
 }
+
+variable "sku_name" {
+  description = "SKU for azure key vault"
+  type        = string
+  default     = "standard"
+}
