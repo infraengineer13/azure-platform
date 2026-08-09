@@ -31,3 +31,20 @@ module "keyvault_rbac" {
   scope                = module.keyvault.id
   role_definition_name = "Key Vault Administrator"
 }
+
+module "acr" {
+  source = "./modules/acr"
+
+  project_name = var.project_name
+  environment  = var.environment
+  location     = var.keyvault_location
+  acr_name     = var.acr_name
+}
+
+module "acr_rbac" {
+  source = "./modules/rbac"
+
+  principal_id         = data.terraform_remote_state.bootstrap.outputs.identity_principal_id
+  scope = module.acr.resource_group_id
+  role_definition_name = "Contributor"
+}
