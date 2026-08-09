@@ -48,3 +48,11 @@ module "acr_rbac" {
   scope = module.acr.resource_group_id
   role_definition_name = "Contributor"
 }
+
+module "acr_pull" {
+  source = "./modules/rbac"
+
+  principal_id         = data.terraform_remote_state.bootstrap.outputs.identity_principal_id
+  scope                = module.acr.id
+  role_definition_name = "AcrPull"
+}
