@@ -45,7 +45,7 @@ module "acr_rbac" {
   source = "./modules/rbac"
 
   principal_id         = data.terraform_remote_state.bootstrap.outputs.identity_principal_id
-  scope = module.acr.resource_group_id
+  scope                = module.acr.resource_group_id
   role_definition_name = "Contributor"
 }
 
@@ -55,4 +55,28 @@ module "acr_pull" {
   principal_id         = data.terraform_remote_state.bootstrap.outputs.identity_principal_id
   scope                = module.acr.id
   role_definition_name = "AcrPull"
+}
+
+module "aks" {
+  source = "./modules/aks"
+
+  project_name = var.project_name
+  environment  = var.environment
+  location     = var.location
+  identity_id  = data.terraform_remote_state.bootstrap.outputs.identity_id
+  aks_name     = var.aks_name
+  dns_prefix   = var.aks_dns_prefix
+  sku_tier     = var.aks_sku_tier
+  node_count   = var.aks_node_count
+  vm_size      = var.aks_vm_size
+}
+
+module "aks_identity" {
+  source = "./modules/identity"
+
+  name                = "mi-${var.project_name}-aks-${var.environment}-ne"
+  resource_group_name = data.terraform_remote_state.bootstrap.outputs.identity_resource_group_name
+  location            = var.aks_identity_location
+  environment         = var.environment
+  project_name        = var.project_name
 }
