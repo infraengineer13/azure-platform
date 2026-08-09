@@ -12,3 +12,8 @@ output "identity_id" {
   description = "Resource ID of Terraform managed identity"
   value       = module.identity.id
 }
+
+output "identity_resource_group_name" {
+  description = "Resource group containing the platform managed identities"
+  value       = module.identity.resource_group_name
+}
